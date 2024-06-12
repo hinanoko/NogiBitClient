@@ -1,0 +1,47 @@
+.header-container {
+    display: flex;
+    justify-content: space-between; /* 水平分布元素 */
+    align-items: center; /* 垂直居中 */
+}
+
+.logo {
+    width: 80px; /* 图片宽度 */
+    height: 80px; /* 自适应高度 */
+    margin-right: 600px; /* 图片右侧间距 */
+}
+
+.text-container {
+    font-family: 'STLiti', Arial, sans-serif; /* 使用 STLiti 字体,如果找不到则使用 Arial 或系统 sans-serif 字体 */
+    font-size: 40px; /* 字体大小 */
+    color: rgb(189, 189, 51); /* 字体颜色 */
+    margin-left: 450px; /* 文字向左对齐 */
+}
+
+.language-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    border: 2px solid #b4b719;
+    border-radius: 4px;
+    color: #b4b719;
+    font-size: 16px;
+    padding: 8px 32px 8px 12px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 24px;
+    cursor: pointer;
+    margin-left: 80px; /* 语言选择框右侧间距 */
+}
+
+.language-select option {
+    border: 2px solid #b4b719;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.language-select option:hover {
+    background-color: #e6e6e6;
+    border: 2px solid #b4b719;
+}
