@@ -2,19 +2,21 @@
     display: flex;
     justify-content: space-between; /* 水平分布元素 */
     align-items: center; /* 垂直居中 */
+    padding: 0 20px; /* 增加一些左右内边距 */
 }
 
 .logo {
     width: 80px; /* 图片宽度 */
-    height: 80px; /* 自适应高度 */
-    margin-right: 600px; /* 图片右侧间距 */
+    height: 80px; /* 图片高度 */
+    margin-right: 350px; /* 图片右侧间距 */
 }
 
 .text-container {
-    font-family: 'STLiti', Arial, sans-serif; /* 使用 STLiti 字体,如果找不到则使用 Arial 或系统 sans-serif 字体 */
+    font-family: 'STLiti', Arial, sans-serif; /* 使用 STLiti 字体，如果找不到则使用 Arial 或系统 sans-serif 字体 */
     font-size: 40px; /* 字体大小 */
     color: rgb(189, 189, 51); /* 字体颜色 */
-    margin-left: 450px; /* 文字向左对齐 */
+    margin-left: 350px
+
 }
 
 .language-select {
@@ -30,18 +32,27 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 8px center;
-    background-size: 24px;
+    background-size: 16px; /* 调整三角箭头大小 */
     cursor: pointer;
-    margin-left: 80px; /* 语言选择框右侧间距 */
+    margin-left: 20px; /* 选择框左侧间距 */
 }
 
 .language-select option {
-    border: 2px solid #b4b719;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     color: #333;
 }
 
-.language-select option:hover {
-    background-color: #e6e6e6;
-    border: 2px solid #b4b719;
+.login-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 70px; /* 按钮左侧间距 */
+}
+
+.expand-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
