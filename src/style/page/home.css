@@ -88,6 +88,7 @@
   
   .history-content {
     margin-bottom: 50px; /* History内容和下一个板块之间的距离 */
+    display: flex;
   }
 
   .rank-container {
@@ -117,6 +118,7 @@
   
   .gamble-content {
     margin-bottom: 50px; /* History内容和下一个板块之间的距离 */
+    display: flex;
   }
 
   .mark-container {
@@ -131,6 +133,7 @@
   
   .mark-content {
     margin-bottom: 50px; /* History内容和下一个板块之间的距离 */
+    display: flex;
   }
 
   .custom-font {
@@ -157,9 +160,47 @@
 }
 
 .rank-button {
-  background-image: url('../../icons/boat.png');
+  background-image: url('../../icons/boat_transparent.png');
   padding-top: 50px;
+  padding-right: 10px;
   color: yellow;
+}
+
+.rank-button:hover {
+  transform: translateY(-5px);
+}
+
+.gamble-button {
+  background-image: url('../../icons/submarine_transparent.png');
+  padding-top: 50px;
+  padding-right: 10px;
+  color: yellow;
+}
+
+.mark-button:hover {
+  transform: translateY(-5px);
+}
+
+.mark-button {
+  background-image: url('../../icons/ship_transparent.png');
+  padding-top: 50px;
+  padding-right: 10px;
+  color: yellow;
+}
+
+.history-button {
+  background-image: url('../../icons/warship_transparent.png');
+  padding-top: 50px;
+  padding-right: 10px;
+  color: yellow;
+}
+
+.history-button:hover {
+  transform: translateY(-5px);
+}
+
+.gamble-button:hover {
+  transform: translateY(-5px);
 }
 
 .back-to-top {
