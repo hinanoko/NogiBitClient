@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between;
     gap:10px;
+    margin-bottom: 50px;
+    margin-top: 30px;
   }
   
   .big-news {
@@ -73,4 +75,99 @@
   .small-news-4:hover {
     transform: scale(1.05);
   }
+
+  .history-container {
+    margin-bottom: 10px; /* History板块和黄线之间的距离 */
+    display: flex;
+  }
+  
+  .history-line {
+    border-top: 2px solid #b4b719; /* 黄线样式 */
+    margin-bottom: 20px; /* 黄线和History内容之间的距离 */
+  }
+  
+  .history-content {
+    margin-bottom: 50px; /* History内容和下一个板块之间的距离 */
+  }
+
+  .rank-container {
+    margin-bottom: 10px; /* History板块和黄线之间的距离 */
+    display: flex;
+  }
+  
+  .rank-line {
+    border-top: 2px solid #b4b719; /* 黄线样式 */
+    margin-bottom: 20px; /* 黄线和History内容之间的距离 */
+  }
+  
+  .rank-content {
+    margin-bottom: 50px; /* History内容和下一个板块之间的距离 */
+    display: flex;
+  }
+
+  .gamble-container {
+    margin-bottom: 10px; /* History板块和黄线之间的距离 */
+    display: flex;
+  }
+  
+  .gamble-line {
+    border-top: 2px solid #b4b719; /* 黄线样式 */
+    margin-bottom: 20px; /* 黄线和History内容之间的距离 */
+  }
+  
+  .gamble-content {
+    margin-bottom: 50px; /* History内容和下一个板块之间的距离 */
+  }
+
+  .mark-container {
+    margin-bottom: 10px; /* History板块和黄线之间的距离 */
+    display: flex;
+  }
+  
+  .mark-line {
+    border-top: 2px solid #b4b719; /* 黄线样式 */
+    margin-bottom: 20px; /* 黄线和History内容之间的距离 */
+  }
+  
+  .mark-content {
+    margin-bottom: 50px; /* History内容和下一个板块之间的距离 */
+  }
+
+  .custom-font {
+    font-family: 'Righteous', cursive;
+    color: rgb(145, 245, 245);
+    font-size: 30px;
+  }
+
+  .home-button {
+    margin: 0 10px;
+    padding: 15px 20px 10px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgb(145, 245, 245);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-repeat: no-repeat;
+    background-position: 20px 5px;
+    background-size: 40px;
+}
+
+.rank-button {
+  background-image: url('../../icons/boat.png');
+  padding-top: 50px;
+  color: yellow;
+}
+
+.back-to-top {
+  margin-right: 370px;
+  color: #1890ff;
+}
+
+.back-to-top:hover {
+  color: rgb(159, 159, 24);
+}
 
