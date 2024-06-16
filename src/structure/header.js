@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeToCn, changeToEn, changeToJp } from "../redux/actions/lang-acts"
 import { LoginOutlined, AlignRightOutlined, CloseOutlined } from '@ant-design/icons';
 
-
 const Header = function () {
     const [selectedLanguage, setSelectedLanguage] = useState("en");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,17 +12,15 @@ const Header = function () {
     const dispatch = useDispatch();
 
     const handleLanguageChange = (event) => {
-        const language = event.target.value
-        console.log(language)
+        const language = event.target.value;
         if (language === "en") {
-            dispatch(changeToEn())
+            dispatch(changeToEn());
         } else if (language === "cn") {
-            dispatch(changeToCn())
+            dispatch(changeToCn());
         } else if (language === "jp") {
-            dispatch(changeToJp())
+            dispatch(changeToJp());
         }
-        setSelectedLanguage(event.target.value);
-        // 在这里添加切换语言的逻辑,比如更新页面内容
+        setSelectedLanguage(language);
     };
 
     const userLogin = () => {
@@ -32,12 +29,10 @@ const Header = function () {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-        document.querySelector('.overlay').style.display = isMenuOpen ? 'none' : 'block';
     };
 
     const handleOverlayClick = () => {
         setIsMenuOpen(false);
-        document.querySelector('.overlay').style.display = 'none';
     };
 
     const translations = {
@@ -67,27 +62,26 @@ const Header = function () {
             </select>
             <div className="text-container">{translations[selectedLanguage].title}</div>
             <img src={imgLogo} alt="Logo" className="logo" />
-            <button className="login-button" onClick={userLogin} style={{ display: 'flex', flexDirection: 'row' }}>
-                <p style={{ marginRight: '10px', fontSize: '20px', color: "#b4b719" }}>{translations[selectedLanguage].login}</p>
-                <LoginOutlined style={{ fontSize: '40px', color: "#b4b719" }} />
+            <button className="login-button" onClick={userLogin}>
+                <p>{translations[selectedLanguage].login}</p>
+                <LoginOutlined />
             </button>
             <button className="expand-button" onClick={toggleMenu}>
-                <AlignRightOutlined style={{ fontSize: '40px', color: "#b4b719" }}></AlignRightOutlined>
-                <p style={{ color: "#b4b719", marginTop: "5px" }}>{translations[selectedLanguage].menu}</p>
+                <AlignRightOutlined />
+                <p>{translations[selectedLanguage].menu}</p>
             </button>
 
-            <div
-                className={`menu-container ${isMenuOpen ? 'open' : ''}`}
-                style={{ right: isMenuOpen ? '0' : '-50%' }}
-            >
+            <div className={`menu-container ${isMenuOpen ? 'open' : ''}`}>
                 <button className="close-button" onClick={toggleMenu}>
-                    <CloseOutlined style={{ fontSize: '40px', color: "#b4b719" }} />
+                    <CloseOutlined />
                 </button>
                 {/* 在这里添加菜单内容 */}
+
+                <p>Content</p>
                 <button>Click Me</button>
             </div>
 
-            <div className="overlay" onClick={handleOverlayClick}></div>
+            <div className={`overlay ${isMenuOpen ? 'show' : ''}`} onClick={handleOverlayClick}></div>
 
             <div className={`main-content ${isMenuOpen ? 'blurred' : ''}`}>
                 {/* 主页面内容 */}

@@ -1,6 +1,9 @@
 import React from 'react';
 import "../style/page/home.css"
-import boatIcon from '../icons/boat.png'
+import wallPaper1 from "../pictures/wallpaper2.webp"
+import wallPaper2 from "../pictures/wallpaper3.webp"
+import wallPaper3 from "../pictures/wallpaper4.webp"
+import wallPaper4 from "../pictures/wallpaper5.webp"
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { UpOutlined } from '@ant-design/icons';
@@ -109,69 +112,76 @@ const Home = function () {
                 </div>
             </div>
 
-
             <div className="history-container">
                 <p className="custom-font" style={{ marginBottom: "2px" }}>{translations[language].history}</p>
-                <ReadOutlined style={{ marginLeft: "10px", marginBottom: "-25px", color: "rgb(145, 245, 245)", fontSize: "30px" }} />
+                <ReadOutlined style={{ marginLeft: "10px", marginBottom: "-50px", color: "rgb(145, 245, 245)", fontSize: "40px" }} />
             </div>
 
             <div className="history-line"></div>
 
             <div className="history-content">
-                {/* History内容 */}
-                <p>{translations[language].historyText}</p>
-                <button className="home-button history-button" onClick={goToHistory} style={{ marginLeft: "240px" }}>
+                <img src={wallPaper1} className='small-image'></img>
+                <div className="text-content">
+                    <p>{translations[language].historyText}</p>
+                </div>
+                <button className="home-button history-button" onClick={goToHistory} style={{ marginRight: "10%" }}>
                     {translations[language].enter}
                 </button>
             </div>
 
             <div className="rank-container">
                 <p className="custom-font" style={{ marginBottom: "2px" }}>{translations[language].rank}</p>
-                <LineChartOutlined style={{ marginLeft: "10px", marginBottom: "-25px", color: "rgb(145, 245, 245)", fontSize: "30px" }} />
+                <LineChartOutlined style={{ marginLeft: "10px", marginBottom: "-50px", color: "rgb(145, 245, 245)", fontSize: "40px" }} />
             </div>
 
             <div className="rank-line"></div>
 
             <div className="rank-content">
-                {/* Rank内容 */}
-                <p>{translations[language].rankText}</p>
-                <button className="home-button rank-button" onClick={goToRank} style={{ marginLeft: "230px" }}>
+                <img src={wallPaper2} className='small-image'></img>
+                <div className="text-content">
+                    <p>{translations[language].rankText}</p>
+                </div>
+                <button className="home-button rank-button" onClick={goToRank} style={{ marginRight: "10%" }}>
                     {translations[language].enter}
                 </button>
             </div>
 
             <div className="gamble-container">
                 <p className="custom-font" style={{ marginBottom: "2px" }}>{translations[language].gamble}</p>
-                <GiftOutlined style={{ marginLeft: "10px", marginBottom: "-25px", color: "rgb(145, 245, 245)", fontSize: "30px" }} />
+                <GiftOutlined style={{ marginLeft: "10px", marginBottom: "-50px", color: "rgb(145, 245, 245)", fontSize: "40px" }} />
             </div>
 
             <div className="gamble-line"></div>
 
             <div className="gamble-content">
-                {/* Gamble内容 */}
-                <p>{translations[language].gambleText}</p>
-                <button className="home-button gamble-button" onClick={goToGamble} style={{ marginLeft: "560px" }}>
+                <img src={wallPaper3} className='small-image'></img>
+                <div className="text-content">
+                    <p>{translations[language].gambleText}</p>
+                </div>
+                <button className="home-button gamble-button" onClick={goToGamble} style={{ marginRight: "10%" }}>
                     {translations[language].enter}
                 </button>
             </div>
 
             <div className="mark-container">
                 <p className="custom-font" style={{ marginBottom: "2px" }}>{translations[language].mark}</p>
-                <FundProjectionScreenOutlined style={{ marginLeft: "10px", marginBottom: "-25px", color: "rgb(145, 245, 245)", fontSize: "30px" }} />
+                <FundProjectionScreenOutlined style={{ marginLeft: "10px", marginBottom: "-50px", color: "rgb(145, 245, 245)", fontSize: "40px" }} />
             </div>
 
             <div className="mark-line"></div>
 
             <div className="mark-content">
-                {/* Mark内容 */}
-                <p>{translations[language].markText}</p>
-                <button className="home-button mark-button" onClick={goToMark} style={{ marginLeft: "190px" }}>
+                <img src={wallPaper4} className='small-image'></img>
+                <div className="text-content">
+                    <p>{translations[language].markText}</p>
+                </div>
+                <button className="home-button mark-button" onClick={goToMark} style={{ marginRight: "10%" }}>
                     {translations[language].enter}
                 </button>
             </div>
 
             {showBackToTop && (
-                <div className="back-to-top" style={{ marginLeft: "660px" }} onClick={() => {
+                <div className="back-to-top" style={{ display: 'flex' }} onClick={() => {
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth',
@@ -184,4 +194,4 @@ const Home = function () {
     )
 }
 
-export default Home
+export default Home;
