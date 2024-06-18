@@ -8,7 +8,7 @@
 .logo {
     width: 8%;
     height: 8vw;
-    margin-right: 20%;
+    margin-right: 15%;
 }
 
 .text-container {
@@ -17,7 +17,7 @@
     color: rgb(189, 189, 51);
     flex-grow: 1;
     text-align: center;
-    margin-left: 15%;
+    margin-left: 5%;
 }
 
 .language-select {
@@ -65,6 +65,29 @@
     color: #b4b719;
 }
 
+.user-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5%;
+    margin-top: 0.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-button p {
+    margin-top: 0.5vw;
+    font-size: 2vw;
+    color: #b4b719;
+}
+
+.user-button .anticon {
+    font-size: 4vw;
+    color: #b4b719;
+}
+
 .expand-button {
     background-color: transparent;
     border: none;
@@ -79,6 +102,34 @@
 .expand-button .anticon {
     font-size: 4vw;
     color: #b4b719;
+}
+
+.close-button{
+    background-color: transparent;
+    color: #b4b719;
+    margin-left: auto; /* 使按钮靠右 */
+    margin-top: 3%;
+    margin-right: 5%;
+    font-size: 3vw;
+    padding: 0;
+    border: none; /* 去掉边框 */
+    outline: none; /* 去掉焦点样式 */
+}
+
+.close-button:hover {
+    animation: rotate 1s infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .expand-button p {
@@ -96,11 +147,37 @@
     background-color: rgba(145, 245, 245, 0.5);
     backdrop-filter: blur(10px);
     transition: right 0.3s ease-in-out;
-    z-index: 999; /* 确保菜单在最上层 */
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
 }
 
 .menu-container.open {
     right: 0;
+}
+
+.menu-item {
+    font-size: 2vw;
+    color: rgb(189, 189, 51);
+    margin: 2vw 0;
+    position: relative;
+    cursor: pointer;
+    margin-left: 10%;
+}
+
+.menu-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2vw;
+    height: 0.2vw;
+    width: 0;
+    background: rgb(189, 189, 51);
+    transition: width 0.5s ease-in-out; /* 延展动画 */
+}
+
+.menu-item:hover::after {
+    width: 90%;
 }
 
 .overlay {

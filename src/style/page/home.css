@@ -59,12 +59,12 @@
   transform: scale(1.05);
 }
 
-.history-container, .rank-container, .gamble-container, .mark-container {
+.history-container, .rank-container, .gamble-container, .mark-container, .future-container {
   margin-bottom: 1%; 
   display: flex;
 }
 
-.history-line, .rank-line, .gamble-line, .mark-line {
+.history-line, .rank-line, .gamble-line, .mark-line, .future-line {
   border-top: 0.5vw solid #b4b719;
   margin-bottom: 2%;
 }
@@ -178,3 +178,47 @@
 .back-to-top:hover {
   color: rgb(159, 159, 24);
 }
+
+.circle-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2vw;
+}
+
+.circle {
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  margin: 1vw;
+  transition: transform 0.3s ease, background 0.3s ease;
+  font-size: 1.5vw;
+  color: white;
+  position: relative;
+}
+
+.circle:nth-child(1) {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+.circle:nth-child(2) {
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.circle:nth-child(3) {
+  background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
+}
+
+.circle:nth-child(4) {
+  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+.circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { UpOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux'
-import { LineChartOutlined, ReadOutlined, FundProjectionScreenOutlined, GiftOutlined } from '@ant-design/icons';
+import { LineChartOutlined, ReadOutlined, FundProjectionScreenOutlined, GiftOutlined, CrownOutlined } from '@ant-design/icons';
 
 const Home = function () {
     const navigate = useNavigate();
@@ -62,7 +62,8 @@ const Home = function () {
             historyText: 'Glory History Record: took your inner magnifier, record every history of each member you like',
             rankText: 'Scoring ranking: Crazy scoring without any worries, from 0 to 10 for you to choose from, don\'t forget to leave your beautiful comments',
             gambleText: 'Cyber Casino: Guess who the next C-spot is',
-            markText: 'member rank, update member\'s order every single, you can use coin to increase the order of the member you like'
+            markText: 'member rank, update member\'s order every single, you can use coin to increase the order of the member you like',
+            future: 'future',
         },
         cn: {
             history: '光辉事迹',
@@ -74,7 +75,8 @@ const Home = function () {
             historyText: '光辉历史记录：抱着赛博放大镜，记录下您心爱的小婊的每一个讨人厌的历史',
             rankText: '打分排名：毫无顾忌的疯狂打分，从0到10供君选择，别忘了留下您的优美评论',
             gambleText: '赛博赌场：猜猜谁是下一个C位',
-            markText: '小婊排名：每单曲同步更新小婊排名，可以通过使用莱姆币让您心爱的小婊一飞冲天'
+            markText: '小婊排名：每单曲同步更新小婊排名，可以通过使用莱姆币让您心爱的小婊一飞冲天',
+            future: '未来'
         },
         jp: {
             history: "輝かしい歴史",
@@ -86,7 +88,8 @@ const Home = function () {
             historyText: '栄光の歴史：あなたの心の拡大鏡を持って、あなたの好きな会員一人一人の歴史を記録します',
             rankText: '採点順位：遠慮のないクレイジーな採点、0から10まであなたの選択、あなたの美しいコメントを残すことを忘れないでください',
             gambleText: 'セブカジノ：誰が次のCビットか当ててみよう',
-            markText: '会員ランクは、会員の注文を更新するたびに、コインを使って好きな会員の注文を増やすことができます'
+            markText: '会員ランクは、会員の注文を更新するたびに、コインを使って好きな会員の注文を増やすことができます',
+            future: '未来'
         }
     };
 
@@ -178,6 +181,28 @@ const Home = function () {
                 <button className="home-button mark-button" onClick={goToMark} style={{ marginRight: "10%" }}>
                     {translations[language].enter}
                 </button>
+            </div>
+
+            <div className='future-container'>
+                <p className="custom-font" style={{ marginBottom: "2px" }}>{translations[language].future}</p>
+                <CrownOutlined style={{ marginLeft: "10px", marginBottom: "-50px", color: "rgb(145, 245, 245)", fontSize: "40px" }} />
+            </div>
+
+            <div className='future-line'></div>
+
+            <div class="circle-container">
+                <div class="circle">
+                    <span>Expect</span>
+                </div>
+                <div class="circle">
+                    <span>Expect</span>
+                </div>
+                <div class="circle">
+                    <span>Expect</span>
+                </div>
+                <div class="circle">
+                    <span>AI IDOL</span>
+                </div>
             </div>
 
             {showBackToTop && (
