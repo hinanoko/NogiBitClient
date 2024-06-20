@@ -1,0 +1,21 @@
+.history-layout {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(10, auto);
+    gap: 20px; /* 使用百分比设置间隔 */
+    padding: 20px;
+  }
+  
+  .single-blog {
+    width: 100%;
+    height: 0; /* 设置高度为 0 */
+    padding-bottom: 100%;
+    background-color: #e6e6e6;
+  }  
+
+

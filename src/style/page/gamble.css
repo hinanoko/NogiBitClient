@@ -1,0 +1,39 @@
+.my-component {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.gamble-image-container {
+    width: 8%;
+}
+
+.my-component-image {
+    width: 60%;
+    border-radius: 50%;
+    height: auto;
+}
+
+.gamble-text-container {
+    width: 12%;
+    margin-left: 10px;
+}
+
+.my-component-name {
+    margin-left: -25%;
+    font-size: 26px;
+    color: #a8b90d;
+}
+
+.gamble-bar-container {
+    position: relative;
+    width: 80%;
+    height: 20px;
+    background-color: white;
+}
+
+.bar-filled {
+    position: absolute;
+    height: 100%;
+    background-color: rgb(145, 245, 245);
+}

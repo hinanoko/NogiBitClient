@@ -1,45 +1,51 @@
-import React, { useRef, useEffect } from 'react';
-import * as echarts from 'echarts/core';
-import { BarChart } from 'echarts/charts';
-import { CanvasRenderer } from 'echarts/renderers';
-import { GridComponent } from 'echarts/components';
+import React, { useState } from 'react';
+import "../style/page/gamble.css"
+import img from "../pictures/shiori6Circle.jpg"
 
-echarts.use([BarChart, CanvasRenderer, GridComponent]);
+const Gamble = function ({ initialPercentage }) {
+    const [percentage, setPercentage] = useState(initialPercentage);
 
-const Gamble = function () {
-    const chartRef = useRef(null);
+    const handlePercentageChange = (e) => {
+        const newPercentage = parseInt(e.target.value);
+        if (!isNaN(newPercentage) && newPercentage >= 0 && newPercentage <= 100) {
+            setPercentage(newPercentage);
+        }
+    };
 
-    useEffect(() => {
-        const myChart = echarts.init(chartRef.current);
-        const option = {
-            xAxis: {
-                type: 'category',
-                data: [- 5, -4, -3, -2, -1, 1, 2, 3, 4, 5],
-                splitLine: { show: false }, // 隐藏网格线
-                axisLine: { show: true }, // 显示 x 轴线
-                axisTick: { show: true }  // 显示 x 轴刻度线
-            },
-            yAxis: {
-                type: 'value',
-                splitLine: { show: false }, // 隐藏网格线
-                axisLine: { show: true }, // 显示 y 轴线
-                axisTick: { show: true }  // 显示 y 轴刻度线
-            },
-            series: [
-                {
-                    data: [120, 200, 150, 80, 70, 110, 130, 90, 100, 170],
-                    type: 'bar',
-                    barWidth: '20%' // 调整条形的宽度
-                }
-            ]
-        };
-        myChart.setOption(option);
-    }, []);
+    const idolName = "KuboShiori"
+
+    const idolHistoryQuantity = 12
 
     return (
         <div>
-            This is gamble
-            <div ref={chartRef} style={{ width: '50%', height: '400px' }}></div>
+            <div>
+                <input
+                    type="number"
+                    value={percentage}
+                    onChange={handlePercentageChange}
+                    max="100"
+                    min="0"
+                />
+            </div>
+            <div className="my-component">
+                <div className="gamble-image-container">
+                    <img
+                        src={img}
+                        alt="Description"
+                        className="my-component-image"
+                    />
+                </div>
+                <div className="gamble-text-container" style={{ display: "flex" }}>
+                    <span className="my-component-name">{idolName}</span>
+                    <div style={{ marginLeft: "25%", fontSize: "23px", color: "#a8b90d" }}>{idolHistoryQuantity}</div>
+                </div>
+                <div className="gamble-bar-container">
+                    <div
+                        className="bar-filled"
+                        style={{ width: `${percentage}%` }}
+                    ></div>
+                </div>
+            </div>
         </div>
     );
 }

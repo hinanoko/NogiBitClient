@@ -73,7 +73,7 @@ const Header = function () {
             ],
         },
         cn: {
-            title: '莱姆婊',
+            title: '乃木宝',
             menu: '菜单',
             login: '登录',
             user: '用户',
