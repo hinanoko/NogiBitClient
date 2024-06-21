@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from '../pages/home';
-import History from '../pages/history';
+import HistoryMain from '../pages/history';
 import Rank from '../pages/rank';
 import Gamble from '../pages/gamble';
 import Mark from '../pages/mark';
@@ -10,15 +10,15 @@ const Main = function () {
         <div>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Home></Home>}></Route>
-                    <Route path="/history" element={<History></History>}></Route>
-                    <Route path='/rank' element={<Rank></Rank>}></Route>
-                    <Route path='/gamble' element={<Gamble></Gamble>}></Route>
-                    <Route path='/mark' element={<Mark></Mark>}></Route>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/history/*" element={<HistoryMain />} />
+                    <Route path='/rank' element={<Rank />} />
+                    <Route path='/gamble' element={<Gamble />} />
+                    <Route path='/mark' element={<Mark />} />
                 </Routes>
             </Router>
         </div>
     )
 }
 
-export default Main
+export default Main;
