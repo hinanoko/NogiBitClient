@@ -1,78 +1,199 @@
 .select-container {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-    align-items: center;
-  }
-  
-  .select-item {
-    display: flex;
-    align-items: center;
-  }
-  
-  .select-item div {
-    margin-right: 8px; /* 调整文字和选择框之间的距离 */
-  }
-  
-  .gamble-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .gamble-row {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    margin-bottom: 20px; /* 每行之间的间距 */
-  }
-  
-  .gamble-rectangle {
-    width: 60px; /* 长方形的宽度 */
-    height: 60px; /* 长方形的高度 */
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .gamble-circle {
-    width: 50px; /* 圆的直径 */
-    height: 50px;
-    background-color: #007bff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .gamble-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .gamble-modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    position: relative;
-  }
-  
-  .gamble-close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }  
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.select-item {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.select-item div {
+  margin-right: 8px; /* 调整文字和选择框之间的距离 */
+}
+
+.gamble-container-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gamble-row {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 20px; /* 每行之间的间距 */
+  height: 20vh;
+}
+
+.gamble-rectangle {
+  width: 9%; /* 长方形的宽度 */
+  height: 100%; /* 长方形的高度 */
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.gamble-circle {
+  width: 80%; /* 圆的直径 */
+  height: 70%;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 12%;
+}
+
+.gamble-member-name {
+  margin-top: 10px; /* 圆圈和名字之间的距离 */
+  font-size: 14px; /* 调整字体大小 */
+  margin-top: 10%;
+  text-align: center;
+}
+
+.gamble-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gamble-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  width: 80%;
+  height: 80%;
+  max-height: 80vh; /* 设置最大高度 */
+  overflow-y: auto; /* 添加垂直滚动条 */
+  display: flex;
+  flex-direction: column; /* 改为列方向 */
+}
+
+.gamble-close-button {
+  position: sticky; /* 改为sticky */
+  top: 0;
+  right: 0;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: #fff; /* 添加背景色 */
+  padding: 5px;
+  z-index: 1; /* 确保关闭按钮在最上层 */
+}
+
+.member-container {
+  display: flex;
+  flex-wrap: wrap; /* 使照片换行 */
+  justify-content: flex-start; /* 照片从左开始排列 */
+  align-content: flex-start; /* 确保内容从顶部开始 */
+}
+
+.member-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5%;
+  width: 15%;
+  height: auto;
+}
+
+.member-photo {
+  width: 90%; /* 使用固定宽度 */
+  height: auto; /* 使用固定高度 */
+  object-fit: cover; /* 确保图片填充整个区域 */
+  cursor: pointer;
+}
+
+.member-name {
+  margin-top: 10%;
+  font-size: 120%;
+  text-align: center;
+}
+
+.circle-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.gamble-title-font {
+  font-family: 'Righteous', cursive;
+  color: rgb(145, 245, 245);
+  font-size: 3vw;
+}
+
+.gamble-mark-line {
+  border-top: 0.5vw solid #b4b719;
+  margin-bottom: 2%;
+}
+
+.gamble-expect-area {
+  margin-top: 20px;
+}
+
+.gamble-position-selection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: rgb(199, 247, 247);
+  height: 7vw;
+  border-radius: 5px;
+}
+
+.gamble-position-selection p{
+color:#b4b719;
+font-size: 46px;
+}
+
+.gamble-position-selection button {
+  margin-left: 230px;
+  margin-right: 10px;
+}
+
+.confirm-button {
+  margin-top: 20px;
+}
+
+.gamble-position-selection-name{
+  display: flex;
+  background-color: rgb(212, 212, 212);
+  height: 80%; /* 设置容器高度，根据需要调整 */
+  width: 20%; /* 设置容器宽度，根据需要调整 */
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* 使文本居中对齐 */
+  border-radius: 7px;
+}
+
+.gamble-center-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%; /* 设置容器高度，根据需要调整 */
+  width: 10%; /* 设置容器宽度，根据需要调整 */
+  margin-left: 10%;
+  text-align: center; /* 使文本居中对齐 */
+  cursor: pointer; /* 鼠标悬停时显示手型图标 */
+  padding: 10px; /* 可选：为容器添加内边距 */
+  box-sizing: border-box; /* 确保内边距和边框包含在高度和宽度内 */
+  background-color: #d3d0d0;
+  border-radius: 7px;
+}

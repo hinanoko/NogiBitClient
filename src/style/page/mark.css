@@ -1,0 +1,62 @@
+.mark-member-container {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    margin-bottom: 10px; /* 每个成员之间的间距 */
+}
+
+.mark-bar-container-left {
+    position: relative;
+    width: 40%; /* 调整宽度以适应布局 */
+    height: 20px;
+    background-color: white;
+    margin-right: 2%;
+    display: flex;
+    justify-content: flex-end; /* 使填充条从右侧开始 */
+    align-items: center;
+}
+
+.mark-bar-filled-left {
+    position: absolute;
+    height: 100%;
+    background-color: rgb(145, 245, 245);
+    right: 0; /* 从右侧开始填充 */
+}
+
+.mark-bar-container-right {
+    position: relative;
+    width: 40%; /* 调整宽度以适应布局 */
+    height: 20px;
+    background-color: white;
+    margin-left: 2%;
+    display: flex;
+    justify-content: flex-start; /* 使填充条从左侧开始 */
+    align-items: center;
+}
+
+.mark-bar-filled-right {
+    position: absolute;
+    height: 100%;
+    background-color: rgb(245, 148, 145);
+    left: 0; /* 从左侧开始填充 */
+}
+
+.mark-image-container {
+    width: 10%;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    flex-direction: column;
+}
+
+.mark-component-image {
+    width: 80%;
+    border-radius: 50%;
+    height: auto;
+}
+
+.mark-bar-percentage {
+    position: relative;
+    z-index: 1;
+    background-color: white;
+    padding: 0 5px;
+}
