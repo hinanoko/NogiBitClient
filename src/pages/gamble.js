@@ -3,7 +3,6 @@ import '../style/page/gamble.css';
 import { Select, Button } from 'antd';
 import { DoubleRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-
 const { Option } = Select;
 
 const members = Array.from({ length: 40 }, (_, i) => ({
@@ -23,6 +22,7 @@ const Gamble = function () {
     const [underCPosition, setUnderCPosition] = useState(null);
     const [modalType, setModalType] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     const navigate = useNavigate()
 
