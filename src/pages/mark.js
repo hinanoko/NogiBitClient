@@ -21,7 +21,7 @@ const members = Array.from({ length: 40 }, (_, i) => ({
 
 const Mark = function () {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedMember, setSelectedMember] = useState(null)
+    const [selectedMember, setSelectedMember] = useState(null);
 
     const navigate = useNavigate()
 

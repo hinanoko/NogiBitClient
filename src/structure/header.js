@@ -1,4 +1,5 @@
 import imgLogo from "../pictures/Logo.png";
+import { Modal, Form, Input, Button, Checkbox, Tabs } from 'antd';
 import { useState, useEffect } from 'react';
 import '../style/structure/header.css';
 import { useDispatch } from "react-redux";
@@ -6,9 +7,13 @@ import { changeToCn, changeToEn, changeToJp } from "../redux/actions/lang-acts";
 import { LoginOutlined, AlignRightOutlined, CloseOutlined, UserOutlined } from '@ant-design/icons';
 import Cookies from 'js-cookie';
 
+const { TabPane } = Tabs;
+
 const Header = function () {
     const [selectedLanguage, setSelectedLanguage] = useState("en");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -41,6 +46,7 @@ const Header = function () {
 
     const userLogin = () => {
         console.log("click once");
+        setIsModalOpen(true)
     };
 
     const toggleMenu = () => {
@@ -54,6 +60,18 @@ const Header = function () {
     const handleMenuItemClick = (action) => {
         action();
         setIsMenuOpen(false); // 关闭菜单
+    };
+
+    const handleCloseHeaderModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleRegister = (values) => {
+        console.log('Register values:', values);
+    };
+
+    const handleLogin = (values) => {
+        console.log('Login values:', values);
     };
 
     const translations = {
@@ -148,6 +166,96 @@ const Header = function () {
             <div className={`main-content ${isMenuOpen ? 'blurred' : ''}`}>
                 {/* 主页面内容 */}
             </div>
+
+            {isModalOpen && (
+                <Modal
+                    title="User Operation"
+                    visible={isModalOpen}
+                    onCancel={handleCloseHeaderModal}
+                    footer={null}
+                >
+                    <Tabs defaultActiveKey="1">
+                        <TabPane tab="Log In" key="1">
+                            <Form
+                                name="login"
+                                initialValues={{ remember: true }}
+                                onFinish={handleLogin}
+                            >
+                                <Form.Item
+                                    name="username"
+                                    rules={[{ required: true, message: 'Please input your user name!' }]}
+                                >
+                                    <Input prefix={<UserOutlined />} placeholder="user name" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    rules={[{ required: true, message: 'Please input your password!' }]}
+                                >
+                                    <Input.Password prefix={<LoginOutlined />} placeholder="password" />
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit" block>
+                                        Login
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </TabPane>
+                        <TabPane tab="Register" key="2">
+                            <Form
+                                name="register"
+                                onFinish={handleRegister}
+                            >
+                                <Form.Item
+                                    name="username"
+                                    rules={[{ required: true, message: 'Please input your user name!' }]}
+                                >
+                                    <Input prefix={<UserOutlined />} placeholder="user name" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    rules={[{ required: true, message: 'Please input your password!' }]}
+                                >
+                                    <Input.Password prefix={<LoginOutlined />} placeholder="password" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="confirm"
+                                    dependencies={['password']}
+                                    hasFeedback
+                                    rules={[
+                                        { required: true, message: 'Please determine password!' },
+                                        ({ getFieldValue }) => ({
+                                            validator(_, value) {
+                                                if (!value || getFieldValue('password') === value) {
+                                                    return Promise.resolve();
+                                                }
+                                                return Promise.reject('two passwords didn\'t match!');
+                                            },
+                                        }),
+                                    ]}
+                                >
+                                    <Input.Password prefix={<LoginOutlined />} placeholder="determine your password" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="agreement"
+                                    valuePropName="checked"
+                                    rules={[
+                                        { validator: (_, value) => value ? Promise.resolve() : Promise.reject('Please agree the document') }
+                                    ]}
+                                >
+                                    <Checkbox>
+                                        I have read and agree <a href="">document</a>
+                                    </Checkbox>
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit" block>
+                                        Register
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </TabPane>
+                    </Tabs>
+                </Modal>
+            )}
         </div>
     );
 };
