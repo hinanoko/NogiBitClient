@@ -178,3 +178,7 @@
     to { transform: translateY(0); }
 }
 
+.yellow-line {
+    border-top: 0.5vw solid #b4b719;
+    margin-bottom: 2%;
+  }

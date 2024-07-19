@@ -1,11 +1,13 @@
 import imgLogo from "../pictures/Logo.png";
-import { Modal, Form, Input, Button, Checkbox, Tabs } from 'antd';
+import { Modal, Form, Input, Button, Checkbox, Tabs, message } from 'antd';
 import { useState, useEffect } from 'react';
 import '../style/structure/header.css';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeToCn, changeToEn, changeToJp } from "../redux/actions/lang-acts";
-import { LoginOutlined, AlignRightOutlined, CloseOutlined, UserOutlined } from '@ant-design/icons';
+import { LoginOutlined, AlignRightOutlined, CloseOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import Cookies from 'js-cookie';
+import axios from 'axios';
+import { setUser, clearUser } from '../redux/actions/user_acts';
 
 const { TabPane } = Tabs;
 
@@ -15,7 +17,11 @@ const Header = function () {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
+
     const dispatch = useDispatch();
+
+    const user = useSelector((state) => state.userHandler);
 
     useEffect(() => {
         // 从 cookie 中读取语言设置
@@ -49,6 +55,11 @@ const Header = function () {
         setIsModalOpen(true)
     };
 
+    const userLogout = () => {
+        dispatch(clearUser());
+        message.success('Logout successful');
+    };
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -66,12 +77,60 @@ const Header = function () {
         setIsModalOpen(false);
     };
 
+    const handleUserIconClick = () => {
+        setIsCoinModalOpen(true);
+    };
+
+    const handleCloseCoinsModal = () => {
+        setIsCoinModalOpen(false);
+    };
+
     const handleRegister = (values) => {
-        console.log('Register values:', values);
+        const registerUser = {
+            user_name: values.username,
+            user_password: values.password
+        }
+        console.log(registerUser)
+
+        axios.post('http://localhost:8081/user', registerUser)
+            .then(response => {
+                console.log(response.data)
+                message.success('Registration successful');
+                setIsModalOpen(false);  // 关闭模态框
+            })
+            .catch(error => {
+                console.log(error)
+                message.error('Registration failed');
+            })
     };
 
     const handleLogin = (values) => {
-        console.log('Login values:', values);
+        const loginUser = {
+            user_name: values.username,
+            user_password: values.password
+        }
+
+        axios.post('http://localhost:8081/user/login', loginUser)
+            .then(response => {
+                console.log(response.data)
+                if (response.data.message === 'Login successful') {
+                    const userData = {
+                        userName: values.username,
+                        userPassword: values.password,
+                        userToken: response.data.token,
+                        userCoin: response.data.coins
+                    };
+                    dispatch(setUser(userData));
+                    message.success('Login successful')
+                    setIsModalOpen(false)
+                } else {
+                    message.error('Login failed')
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        console.log(loginUser)
     };
 
     const translations = {
@@ -79,6 +138,7 @@ const Header = function () {
             title: 'NogiMember',
             menu: 'Menu',
             login: 'Login',
+            logout: 'Logout',
             user: 'user',
             menuItems: [
                 { name: 'Home', action: () => console.log('2') },
@@ -94,6 +154,7 @@ const Header = function () {
             title: '乃木宝',
             menu: '菜单',
             login: '登录',
+            logout: '退出',
             user: '用户',
             menuItems: [
                 { name: '首页', action: () => console.log('2') },
@@ -109,6 +170,7 @@ const Header = function () {
             title: '乃木番',
             menu: 'メニュー',
             login: 'ログイン',
+            logout: 'ログアウト',
             user: 'ユーザー',
             menuItems: [
                 { name: 'ホーム', action: () => console.log('2') },
@@ -129,15 +191,15 @@ const Header = function () {
                 <option value="cn">中文</option>
                 <option value="jp">日本語</option>
             </select>
-            <button className="user-button">
+            <button className="user-button" onClick={handleUserIconClick}>
                 <UserOutlined />
-                <p>{translations[selectedLanguage].user}</p>
+                <p>{user.isLoggedIn ? user.userName : translations[selectedLanguage].user}</p>
             </button>
             <div className="text-container">{translations[selectedLanguage].title}</div>
             <img src={imgLogo} alt="Logo" className="logo" />
-            <button className="login-button" onClick={userLogin}>
-                <p>{translations[selectedLanguage].login}</p>
-                <LoginOutlined />
+            <button className="login-button" onClick={user.isLoggedIn ? userLogout : userLogin}>
+                <p>{user.isLoggedIn ? translations[selectedLanguage].logout : translations[selectedLanguage].login}</p>
+                {user.isLoggedIn ? <LogoutOutlined /> : <LoginOutlined />}
             </button>
             <button className="expand-button" onClick={toggleMenu}>
                 <AlignRightOutlined />
@@ -254,6 +316,22 @@ const Header = function () {
                             </Form>
                         </TabPane>
                     </Tabs>
+                </Modal>
+            )}
+
+
+            {isCoinModalOpen && (
+                <Modal
+                    title="Remaining Coins"
+                    visible={isCoinModalOpen}
+                    onCancel={handleCloseCoinsModal}
+                    footer={[
+                        <Button key="close" onClick={handleCloseCoinsModal}>
+                            Close
+                        </Button>
+                    ]}
+                >
+                    <p>你剩余的金币数量：{user.coins}</p> {/* 这里假设 coins 是从状态或者 Redux 中获取的 */}
                 </Modal>
             )}
         </div>
