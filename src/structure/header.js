@@ -3,6 +3,7 @@ import { Modal, Form, Input, Button, Checkbox, Tabs, message } from 'antd';
 import { useState, useEffect } from 'react';
 import '../style/structure/header.css';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { changeToCn, changeToEn, changeToJp } from "../redux/actions/lang-acts";
 import { LoginOutlined, AlignRightOutlined, CloseOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import Cookies from 'js-cookie';
@@ -20,6 +21,8 @@ const Header = function () {
     const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const user = useSelector((state) => state.userHandler);
 
@@ -69,7 +72,18 @@ const Header = function () {
     };
 
     const handleMenuItemClick = (action) => {
-        action();
+        const actionResult = action();
+        if (actionResult === "Mark action") {
+            navigate('/mark');
+        } else if (actionResult === "Gamble action") {
+            navigate('/gamble')
+        } else if (actionResult === "Rank action") {
+            navigate('/rank')
+        } else if (actionResult === "History action") {
+            navigate('/history')
+        } else {
+
+        }
         setIsMenuOpen(false); // 关闭菜单
     };
 
@@ -141,13 +155,13 @@ const Header = function () {
             logout: 'Logout',
             user: 'user',
             menuItems: [
-                { name: 'Home', action: () => console.log('2') },
-                { name: 'About', action: () => console.log('1') },
-                { name: 'Contact', action: () => console.log('Contact action') },
-                { name: 'History', action: () => console.log('History action') },
-                { name: 'Rank', action: () => console.log('Rank action') },
-                { name: 'Gamble', action: () => console.log('Gamble action') },
-                { name: 'Mark', action: () => console.log('Mark action') }
+                { name: 'Home', action: () => { console.log('2'); return 'Home action'; } },
+                { name: 'About', action: () => { console.log('1'); return 'About action'; } },
+                { name: 'Contact', action: () => { console.log('Contact action'); return 'Contact action'; } },
+                { name: 'History', action: () => { console.log('History action'); return 'History action'; } },
+                { name: 'Rank', action: () => { console.log('Rank action'); return 'Rank action'; } },
+                { name: 'Gamble', action: () => { console.log('Gamble action'); return 'Gamble action'; } },
+                { name: 'Mark', action: () => { console.log('Mark action'); return 'Mark action'; } }
             ],
         },
         cn: {
@@ -157,13 +171,13 @@ const Header = function () {
             logout: '退出',
             user: '用户',
             menuItems: [
-                { name: '首页', action: () => console.log('2') },
-                { name: '关于', action: () => console.log('1') },
-                { name: '联系', action: () => console.log('Contact action') },
-                { name: '光辉事迹', action: () => console.log('History action') },
-                { name: '排名榜', action: () => console.log('Rank action') },
-                { name: '猜轮盘', action: () => console.log('Gamble action') },
-                { name: '季度打分', action: () => console.log('Mark action') }
+                { name: '首页', action: () => { console.log('2'); return 'Home action'; } },
+                { name: '关于', action: () => { console.log('1'); return 'About action'; } },
+                { name: '联系', action: () => { console.log('Contact action'); return 'Contact action'; } },
+                { name: '光辉事迹', action: () => { console.log('History action'); return 'History action'; } },
+                { name: '排名榜', action: () => { console.log('Rank action'); return 'Rank action'; } },
+                { name: '猜轮盘', action: () => { console.log('Gamble action'); return 'Gamble action'; } },
+                { name: '季度打分', action: () => { console.log('Mark action'); return 'Mark action'; } }
             ],
         },
         jp: {
@@ -173,13 +187,13 @@ const Header = function () {
             logout: 'ログアウト',
             user: 'ユーザー',
             menuItems: [
-                { name: 'ホーム', action: () => console.log('2') },
-                { name: '約', action: () => console.log('1') },
-                { name: '連絡', action: () => console.log('Contact action') },
-                { name: '輝かしい歴史', action: () => console.log('History action') },
-                { name: '等級', action: () => console.log('Rank action') },
-                { name: '順位予測', action: () => console.log('Gamble action') },
-                { name: 'メンバーのスコアリング', action: () => console.log('Mark action') }
+                { name: 'ホーム', action: () => { console.log('2'); return 'Home action'; } },
+                { name: '約', action: () => { console.log('1'); return 'About action'; } },
+                { name: '連絡', action: () => { console.log('History action'); return 'History action'; } },
+                { name: '輝かしい歴史', action: () => { console.log('History action'); return 'History action'; } },
+                { name: '等級', action: () => { console.log('Rank action'); return 'Rank action'; } },
+                { name: '順位予測', action: () => { console.log('Gamble action'); return 'Gamble action'; } },
+                { name: 'メンバーのスコアリング', action: () => { console.log('Mark action'); return 'Mark action'; } }
             ],
         }
     };

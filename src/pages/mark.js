@@ -74,6 +74,11 @@ const Mark = function () {
         navigate('/');
     }
 
+    const getMemberImage = function (memberId) {
+        const paddedId = memberId.toString().padStart(4, '0');
+        return require(`../pictures/member/${paddedId}.jpg`);
+    }
+
     const fetchMarks = useCallback(async () => {
         try {
             const response = await axios.get('http://localhost:8081/mark');
@@ -164,14 +169,15 @@ const Mark = function () {
             {[...Array(count)].map((_, index) => {
                 const memberIndex = startIndex + index;
                 const memberNumber = underMember[memberIndex];
+                const memberName = memberData.find(member => member.id === memberNumber)?.name || memberNumber;
                 return (
                     <div key={memberIndex} className="mark-rectangle" onClick={() => clickToPanel(memberNumber)}>
                         <img
-                            src={img}
+                            src={getMemberImage(memberNumber)}
                             className="mark-circle-photo"
                             alt={`Member ${memberIndex + 1}`}
                         />
-                        <div className="mark-member-name">{memberNumber}</div>
+                        <div className="mark-member-name">{memberName}</div>
                     </div>
                 );
             })}
@@ -194,14 +200,15 @@ const Mark = function () {
             {[...Array(count)].map((_, index) => {
                 const memberIndex = startIndex + index;
                 const memberNumber = onMember[memberIndex];
+                const memberName = memberData.find(member => member.id === memberNumber)?.name || memberNumber;
                 return (
                     <div key={memberIndex} className="mark-rectangle" onClick={() => clickToPanel(memberNumber)}>
                         <img
-                            src={img}
+                            src={getMemberImage(memberNumber)}
                             className="mark-circle-photo"
                             alt={`Member ${memberIndex + 1}`}
                         />
-                        <div className="mark-member-name">{memberNumber}</div>
+                        <div className="mark-member-name">{memberName}</div>
                     </div>
                 );
             })}
@@ -222,12 +229,12 @@ const Mark = function () {
             <div>
                 <div className="yellow-line"></div>
 
-                <p>Senbatu Member:</p>
+                <p className="senbatsu-title">Senbatsu Member:</p>
 
                 <OnMemberGridContainer></OnMemberGridContainer>
 
                 <div className="yellow-line" style={{ marginTop: "-28%" }}></div>
-                <p>Under Member:</p>
+                <p className="senbatsu-title">Under Member:</p>
 
                 <UnderMemberGridContainer></UnderMemberGridContainer>
 
@@ -249,7 +256,7 @@ const Mark = function () {
 
                         <div className="mark-image-container">
                             <img
-                                src={member.photo}
+                                src={getMemberImage(member.id)}
                                 alt={member.name}
                                 className="mark-component-image"
                             />

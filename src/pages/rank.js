@@ -70,7 +70,7 @@ const RankPage = function () {
     }
 
     const rankContainers = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 32; i++) {
         rankContainers.push(<Rank key={i} index={i} handleClick={handleClick} />);
     }
 

@@ -21,7 +21,12 @@ const History = function ({ initialPercentage, handleUnitClick }) {
         }
     };
 
-    const units = Array.from({ length: 35 }, (_, index) => ({
+    const getMemberImage = function (memberId) {
+        const paddedId = memberId.toString().padStart(4, '0');
+        return require(`../pictures/member/${paddedId}.jpg`);
+    }
+
+    const units = Array.from({ length: 32 }, (_, index) => ({
         idolName: `Idol ${index + 1}`,
         idolHistoryQuantity: Math.floor(Math.random() * 100),
         percentage: Math.floor(Math.random() * 101),
@@ -41,7 +46,7 @@ const History = function ({ initialPercentage, handleUnitClick }) {
                     <div className="my-component">
                         <div className="history-image-container">
                             <img
-                                src={img}
+                                src={getMemberImage(index + 1)}
                                 alt="Description"
                                 className="my-component-image"
                             />

@@ -182,3 +182,11 @@
     border-top: 0.5vw solid #b4b719;
     margin-bottom: 2%;
   }
+
+  .senbatsu-title {
+    color: #0578ad; /* 这是金黄色，你可以根据需要调整 */
+    font-size: 200%; /* 调整大小，可以根据需要增加或减少 */
+    font-weight: bold; /* 让字体加粗 */
+    margin: 2% 0; /* 添加一些上下边距 */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* 添加文字阴影，使其更醒目 */
+}

@@ -8,15 +8,13 @@ import Mark from '../pages/mark';
 const Main = function () {
     return (
         <div>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/history/*" element={<HistoryMain />} />
-                    <Route path='/rank' element={<Rank />} />
-                    <Route path='/gamble' element={<Gamble />} />
-                    <Route path='/mark' element={<Mark />} />
-                </Routes>
-            </Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/history/*" element={<HistoryMain />} />
+                <Route path='/rank' element={<Rank />} />
+                <Route path='/gamble' element={<Gamble />} />
+                <Route path='/mark' element={<Mark />} />
+            </Routes>
         </div>
     )
 }
