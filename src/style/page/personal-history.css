@@ -1,61 +1,78 @@
+/* personal-history.css */
+
 .history-layout {
-    padding: 20px;
-  }
-  
-  .history-layout h2 {
-    margin-bottom: 20px;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 每行五个格子 */
-    gap: 10px; /* 格子之间的间距 */
-  }
-  
-  .single-blog {
-    background-color: #f0f0f0; /* 格子的背景色 */
-    border: 1px solid #ccc; /* 可选：格子的边框 */
-    position: relative; /* 设置为相对定位，以便内部元素绝对定位 */
-    overflow: hidden; /* 隐藏溢出的内容 */
-    height: 0; /* 设置高度为0 */
-    padding-bottom: 160%; /* 用padding-bottom设置高度比例 */
-  }
-  
-  .single-title {
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    right: 5%;
-    height: 30%; /* 高度占比30% */
-    text-align: center;
-    overflow: hidden; /* 隐藏溢出文字 */
-    text-overflow: ellipsis; /* 文字溢出显示省略号 */
-  }
-  
-  .single-image {
-    position: absolute;
-    top: 35%; /* 图片从40%处开始 */
-    left: 5%;
-    right: 5%;
-    height: 40%; /* 高度占比40% */
-    width: 90%; /* 调整图片宽度 */
-    object-fit: cover; /* 保持图片的比例 */
-  }
-  
-  .single-date {
-    position: absolute;
-    top: 85%;
-    left: 5%;
-    right: 5%;
-    height: 20%; /* 高度占比20% */
-    text-align: center;
-  }
-  
-  .year-line {
-    border-top: 0.5vw solid #b4b719;
-    margin-bottom: 2%;
-  }
-  
-  .back-button {
-    margin-bottom: 20px;
-  }  
+  padding: 20px;
+  position: relative;
+}
+
+.history-layout h2 {
+  margin-bottom: 20px;
+}
+
+.back-button {
+  margin-bottom: 20px;
+}  
+
+.edit-button {
+  margin-left: 40%;
+  background-color: #1890ff; /* 蓝色 */
+  color: white; /* 白色文字 */
+  font-size: 16px; /* 增大字体 */
+  padding: 10px 20px; /* 增大按钮 */
+  border: none; /* 移除边框 */
+  border-radius: 5px; /* 圆角边框 */
+  cursor: pointer; /* 鼠标悬停时显示手型光标 */
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.single-blog {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 160%;
+}
+
+.single-title,
+.single-image,
+.single-date {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  text-align: center;
+}
+
+.single-title {
+  top: 5%;
+  height: 30%;
+  font-size: 16px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.single-image {
+  top: 35%;
+  height: 40%;
+  width: 90%;
+  object-fit: cover;
+}
+
+.single-date {
+  top: 85%;
+  height: 20%;
+  font-size: 12px;
+  color: gray;
+}
+
+.year-line {
+  border-top: 0.5vw solid #b4b719;
+  margin-bottom: 2%;
+}
