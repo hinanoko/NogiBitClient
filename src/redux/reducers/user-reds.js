@@ -6,6 +6,7 @@ const initialState = {
     userPassword: "",
     userToken: "",
     coins: 0,
+    userId: 0,
     isLoggedIn: false,  // 新增状态
 };
 
@@ -17,6 +18,7 @@ export const userReducer = (state = initialState, action) => {
                 userName: action.payload.userName,
                 userPassword: action.payload.userPassword,
                 userToken: action.payload.userToken,
+                userId: action.payload.userId,
                 coins: action.payload.userCoin,
                 isLoggedIn: true,  // 设置登录状态
             };

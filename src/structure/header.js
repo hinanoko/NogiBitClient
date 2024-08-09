@@ -132,7 +132,8 @@ const Header = function () {
                         userName: values.username,
                         userPassword: values.password,
                         userToken: response.data.token,
-                        userCoin: response.data.coins
+                        userCoin: response.data.coins,
+                        userId: response.data.userId
                     };
                     dispatch(setUser(userData));
                     message.success('Login successful')

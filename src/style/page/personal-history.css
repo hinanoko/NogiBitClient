@@ -76,3 +76,11 @@
   border-top: 0.5vw solid #b4b719;
   margin-bottom: 2%;
 }
+
+.title-text {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

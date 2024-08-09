@@ -7,8 +7,50 @@ import { BarChart } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 import { GridComponent } from 'echarts/components';
 import { CloseOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { useSelector } from "react-redux";
+import axios from 'axios';
 
 echarts.use([BarChart, CanvasRenderer, GridComponent]);
+
+const memberData = [
+    { id: "0001", name: "Ioki_Mao" },
+    { id: "0002", name: "Ichinose_Miku" },
+    { id: "0003", name: "Okamoto_Hina" },
+    { id: "0004", name: "Ogawa_Aya" },
+    { id: "0005", name: "Okuda_Iroha" },
+    { id: "0006", name: "Kawasaki_Sakura" },
+    { id: "0007", name: "Sugawara_Satsuki" },
+    { id: "0008", name: "Tomisato_Nao" },
+    { id: "0009", name: "Nakanishi_Aruno" },
+    { id: "0010", name: "Inoue_Nagi" },
+    { id: "0011", name: "Ikeda_Teresa" },
+    { id: "0012", name: "Umezawa_Minami" },
+    { id: "0013", name: "Kubo_Shiori" },
+    { id: "0014", name: "Sato_Kaede" },
+    { id: "0015", name: "Nakamura_Reno" },
+    { id: "0016", name: "Mukai_Hazuki" },
+    { id: "0017", name: "Yoda_Yuki" },
+    { id: "0018", name: "Yoshida_Ayano_Christie" },
+    { id: "0019", name: "Ito_Ririan" },
+    { id: "0020", name: "Iwamoto_Renka" },
+    { id: "0021", name: "Endo_Sakura" },
+    { id: "0022", name: "Kaki_Haruka" },
+    { id: "0023", name: "Kanagawa_Saya" },
+    { id: "0024", name: "Shibata_Yuna" },
+    { id: "0025", name: "Tamura_Mayu" },
+    { id: "0026", name: "Tsutsui_Ayame" },
+    { id: "0027", name: "Hayashi_Runa" },
+    { id: "0028", name: "Matsuo_Miyu" },
+    { id: "0029", name: "Yakubo_Mio" },
+    { id: "0030", name: "Yumiki_Nao" },
+    { id: "0031", name: "Kuromi_Haruka" },
+    { id: "0032", name: "Sato_Rika" },
+];
+
+const getNameById = (id) => {
+    const member = memberData.find(member => member.id === id);
+    return member ? member.name : "Unknown Member";
+};
 
 const Rank = function ({ index, handleClick }) {
     const getImageName = (memberName) => {
@@ -25,10 +67,12 @@ const Rank = function ({ index, handleClick }) {
         handleClick(index);
     };
 
+    const nogiName = getNameById(memberName);
+
     return (
         <div className="rankGrid-container" onClick={handleMemberClick}>
             <div>
-                <p>Member {memberName}</p>
+                <p>{nogiName}</p>
             </div>
             <div>
                 <img className="member-img" src={getImageName(memberName)} alt="Member" />
@@ -44,9 +88,9 @@ const RankPage = function () {
     const [showModal, setShowModal] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null);
 
-    const navigate = useNavigate()
+    const user = useSelector((state) => state.userHandler);
 
-    const mark = -75;
+    const navigate = useNavigate();
 
     const handleClick = (index) => {
         setSelectedIndex(index);
@@ -66,8 +110,8 @@ const RankPage = function () {
     };
 
     const backToHome = () => {
-        navigate('/')
-    }
+        navigate('/');
+    };
 
     const rankContainers = [];
     for (let i = 0; i < 32; i++) {
@@ -78,6 +122,8 @@ const RankPage = function () {
         const [rating, setRating] = useState(0);
         const [hoverRating, setHoverRating] = useState(null);
         const [comment, setComment] = useState('');
+        const [comments, setComments] = useState([]);
+        const [totalMark, setTotalMark] = useState(0);
 
         const handleRatingChange = (value) => {
             setRating(value);
@@ -102,65 +148,140 @@ const RankPage = function () {
             setComment(e.target.value);
         };
 
+        const memberName = getNameById(memberID);
+
         const handleSubmit = () => {
-            // 在这里可以添加提交评分和评论的逻辑
-            console.log(`Rating: ${rating}, Comment: ${comment}`);
+            const customerComment = {
+                customerId: user.userId,
+                memberId: memberID,
+                content: comment,
+                date: new Date().toISOString().split('T')[0]
+            }
+            axios.post('http://localhost:8081/comments/add', customerComment, {
+                headers: {
+                    'Authorization': user.userToken
+                }
+            }).then(response => {
+                console.log(response)
+            })
+            console.log(comment);
+            setComment('')
         };
+
+        const submitMark = () => {
+            console.log()
+
+            const memberInformation = {
+                customerId: user.userId,
+                memberId: memberID,
+                memberMark: mapStarsToScore(rating)
+            }
+            axios.post('http://localhost:8081/rank/rate', memberInformation, {
+                headers: {
+                    'Authorization': user.userToken
+                }
+            }).then(response => {
+                console.log(response)
+            })
+
+        }
 
         const chartRef = useRef(null);
 
-        const comments = [
-            { rating: 4, author: 'John Doe', text: 'This is a great product!' },
-            { rating: 3, author: 'Jane Smith', text: 'Could be better, but not bad.' },
-            { rating: 5, author: 'Bob Johnson', text: 'Absolutely amazing! Highly recommended.' },
-            { rating: 5, author: 'Bob Johnson', text: 'Absolutely amazing! Highly recommended.' },
-            { rating: 5, author: 'Bob Johnson', text: 'Absolutely amazing! Highly recommended.' },
-            { rating: 5, author: 'Bob Johnson', text: 'Absolutely amazing! Highly recommended.' },
-            { rating: 5, author: 'Bob Johnson', text: 'Absolutely amazing! Highly recommended.' },
-        ];
-
-
         useEffect(() => {
             const myChart = echarts.init(chartRef.current);
-            const option = {
-                xAxis: {
-                    type: 'category',
-                    data: [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5],
-                    splitLine: { show: false }, // 隐藏网格线
-                    axisLine: { show: true }, // 显示 x 轴线
-                    axisTick: { show: true }  // 显示 x 轴刻度线
-                },
-                yAxis: {
-                    type: 'value',
-                    splitLine: { show: false }, // 隐藏网格线
-                    axisLine: { show: true }, // 显示 y 轴线
-                    axisTick: { show: true }  // 显示 y 轴刻度线
-                },
-                series: [
-                    {
-                        data: [
-                            { value: 120, itemStyle: { color: 'red' } },
-                            { value: 200, itemStyle: { color: 'red' } },
-                            { value: 150, itemStyle: { color: 'red' } },
-                            { value: 80, itemStyle: { color: 'red' } },
-                            { value: 70, itemStyle: { color: 'red' } },
-                            { value: 110, itemStyle: { color: 'blue' } },
-                            { value: 130, itemStyle: { color: 'blue' } },
-                            { value: 90, itemStyle: { color: 'blue' } },
-                            { value: 100, itemStyle: { color: 'blue' } },
-                            { value: 170, itemStyle: { color: 'blue' } }
-                        ],
-                        type: 'bar',
-                        barWidth: '40%' // 调整条形的宽度为 40%
-                    }
-                ]
-            };
-            myChart.setOption(option);
-        }, []);
+            const formattedMemberID = parseInt(memberID, 10);
+
+            axios.get(`http://localhost:8081/rank/member?memberId=${formattedMemberID}`)
+                .then(response => {
+                    const scoresData = response.data.scores;
+                    setTotalMark(response.data.totalRank);
+
+                    // Map scoresData to the format required by the chart
+                    const categories = [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5];
+                    const data = categories.map(category => {
+                        const key = `score_${category < 0 ? 'n' : 'p'}${Math.abs(category)}_count`;
+                        return {
+                            value: scoresData[key] || 0,
+                            itemStyle: { color: category < 0 ? 'red' : 'blue' }
+                        };
+                    });
+
+                    const option = {
+                        xAxis: {
+                            type: 'category',
+                            data: categories,
+                            splitLine: { show: false },
+                            axisLine: { show: true },
+                            axisTick: { show: true }
+                        },
+                        yAxis: {
+                            type: 'value',
+                            splitLine: { show: false },
+                            axisLine: { show: true },
+                            axisTick: { show: true }
+                        },
+                        series: [
+                            {
+                                data: data,
+                                type: 'bar',
+                                barWidth: '40%'
+                            }
+                        ]
+                    };
+
+                    myChart.setOption(option);
+                })
+                .catch(error => {
+                    console.error("Error fetching member data:", error);
+                });
+        }, [memberID]);
+
+        useEffect(() => {
+            if (memberID) {
+                const formattedMemberID = parseInt(memberID, 10);
+                axios.get(`http://localhost:8081/comments/member?memberId=${formattedMemberID}`)
+                    .then(response => {
+                        setComments(response.data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching comments:', error);
+                    });
+            }
+        }, [memberID]);
+
+        const mapScoreToStars = (score) => {
+            console.log("Score:", score);  // 调试信息
+            if (score === 0) return parseFloat(0); // No stars for score 0
+            if (score === -5) return parseFloat(0.5);
+            if (score === -4) return parseFloat(1);
+            if (score === -3) return parseFloat(1.5);
+            if (score === -2) return parseFloat(2);
+            if (score === -1) return parseFloat(2.5);
+            if (score === 5) return parseFloat(5);
+            if (score === 4) return parseFloat(4.5);
+            if (score === 3) return parseFloat(4);
+            if (score === 2) return parseFloat(3.5);
+            if (score === 1) return parseFloat(3);
+        };
+
+        const mapStarsToScore = (star) => {
+            if (star === 0) return 0; // No stars for score 0
+            if (star === 0.5) return -5;
+            if (star === 1) return -4;
+            if (star === 1.5) return -3;
+            if (star === 2) return -2;
+            if (star === 1.5) return -1;
+            if (star === 5) return 5;
+            if (star === 4.5) return 4;
+            if (star === 4) return 3;
+            if (star === 3.5) return 2;
+            if (star === 3) return 1;
+        }
 
         return (
             <div>
-                <p>member ID: {memberID}</p>
+                <p>Member Name: {memberName}</p>
                 <div className='markArea'>
                     <div className='memberRank-container'>
                         <img className="memberRank-img" src={getImageName(memberID)} alt="Member" />
@@ -171,14 +292,13 @@ const RankPage = function () {
                     <div className='totalMark-container'>
                         <p>Total mark: </p>
                         <div style={{
-                            fontFamily: 'Arial Black, sans-serif', // 使用新字体
-                            color: mark >= 0 ? 'blue' : 'red', // 根据分数显示不同颜色
-                            fontSize: '7rem', // 增加字体大小
+                            fontFamily: 'Arial Black, sans-serif',
+                            color: totalMark >= 0 ? 'blue' : 'red',
+                            fontSize: '7rem',
                         }}>
-                            {mark}
+                            {totalMark}
                         </div>
                     </div>
-
                 </div>
 
                 <div className='commentArea'>
@@ -187,12 +307,12 @@ const RankPage = function () {
                         <div>
                             <Rate
                                 allowHalf
-                                value={rating - 2.5}
+                                value={rating}
                                 onChange={handleRatingChange}
                                 onHoverChange={handleHoverChange}
-                                style={{ fontSize: "200%" }} // 增加星星的大小
+                                style={{ fontSize: "200%" }}
                             />
-                            <Button style={{ width: "25%" }} type="primary">Submit Mark</Button>
+                            <Button style={{ width: "25%" }} type="primary" onClick={submitMark}>Submit Mark</Button>
                         </div>
                     </div>
                     <textarea
@@ -208,14 +328,16 @@ const RankPage = function () {
                     {comments.length > 0 ? (
                         <div className="comment-list">
                             {comments.map((comment, index) => (
-                                <div key={index} className="comment-item">
+                                <div key={comment.commentId} className="comment-item">
                                     <div className="comment-header">
-                                        <div className="comment-rating">
-                                            <Rate disabled value={comment.rating} style={{ fontSize: '1rem' }} />
+                                        <div className="comment-author">{comment.customerName}</div>
+                                        <div className="comment-rating" style={{ marginLeft: "1%" }}>
+                                            {comment.score !== 0 && (
+                                                <Rate allowHalf disabled value={mapScoreToStars(comment.score)} style={{ fontSize: '1rem' }} />
+                                            )}
                                         </div>
-                                        <div className="comment-author">{comment.author}</div>
                                     </div>
-                                    <div className="comment-body">{comment.text}</div>
+                                    <div className="comment-body">{comment.content}</div>
                                 </div>
                             ))}
                         </div>
@@ -225,8 +347,8 @@ const RankPage = function () {
                 </div>
 
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <div>
@@ -239,13 +361,9 @@ const RankPage = function () {
                     <>
                         <div className="modal">
                             <div className='header-section'>
-                                <h2>This is xxx's display area</h2>
+                                <h2>This is {getNameById(`000${selectedIndex + 1}`.slice(-4))}'s display area</h2>
                                 <button className='closeButton' onClick={handleCloseModal}><CloseOutlined /></button>
                             </div>
-                            {/* 添加一些内容以测试滚动效果 */}
-                            {/*{Array.from({ length: 100 }, (_, i) => (
-                                <p key={i}>This is a long content line {i + 1}</p>
-                            ))}*/}
                             <RankArea memberID={`000${selectedIndex + 1}`.slice(-4)}></RankArea>
                         </div>
                         <div className="modal-overlay" onClick={handleCloseModal}></div>
