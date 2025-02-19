@@ -9,6 +9,14 @@ import { useState, useEffect } from 'react';
 import { UpOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux'
 import { LineChartOutlined, ReadOutlined, FundProjectionScreenOutlined, GiftOutlined, CrownOutlined } from '@ant-design/icons';
+import ImageCarousel from './test';
+import MainBigPhoto3 from "../pictures/MainBigPhoto3.png"
+import MainBigPhoto from "../pictures/MainBigPhoto.png"
+import MainBigPhoto2 from "../pictures/MainBigPhoto2.jpg"
+import MainSmallPhoto2 from "../pictures/MainSmallPhoto2.jpg"
+
+import { Carousel } from 'antd';
+import 'antd/dist/reset.css'; // 确保引入 Ant Design 样式
 
 const Home = function () {
     const navigate = useNavigate();
@@ -50,6 +58,13 @@ const Home = function () {
     const handleNewsClick = function () {
         navigate('/history');
     }
+
+    const carouselImages = [
+        MainBigPhoto3,
+        MainBigPhoto,
+        MainBigPhoto2,
+        MainSmallPhoto2
+    ];
 
     const translations = {
         en: {
@@ -96,9 +111,21 @@ const Home = function () {
     return (
         <div>
             <div className="news-container">
-                <div className="big-news" onClick={() => handleNewsClick()}>
-                    {/* 大新闻内容 */}
+                {/* 大新闻内容 */}
+                <div className='carousel-news'>
+                    <Carousel autoplay dotPosition="bottom">
+                        {carouselImages.map((image, index) => (
+                            <div key={index} style={{ textAlign: 'center' }}>
+                                <img
+                                    src={image}
+                                    alt={`carousel-${index}`}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
+                                />
+                            </div>
+                        ))}
+                    </Carousel>
                 </div>
+
                 <div className="small-news-container">
                     <div className="small-news-1">
                         {/* 小新闻1内容 */}

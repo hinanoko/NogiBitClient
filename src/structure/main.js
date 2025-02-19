@@ -4,8 +4,22 @@ import HistoryMain from '../pages/history';
 import Rank from '../pages/rank';
 import Gamble from '../pages/gamble';
 import Mark from '../pages/mark';
+import ImageCarousel from '../pages/test';
+
+import MainBigPhoto3 from "../pictures/MainBigPhoto3.png"
+import MainBigPhoto from "../pictures/MainBigPhoto.png"
+import MainBigPhoto2 from "../pictures/MainBigPhoto2.jpg"
+import MainSmallPhoto2 from "../pictures/MainSmallPhoto1.jpg"
 
 const Main = function () {
+
+    const carouselImages = [
+        MainBigPhoto3,
+        MainBigPhoto,
+        MainBigPhoto2,
+        MainSmallPhoto2
+    ];
+
     return (
         <div>
             <Routes>
@@ -14,6 +28,7 @@ const Main = function () {
                 <Route path='/rank' element={<Rank />} />
                 <Route path='/gamble' element={<Gamble />} />
                 <Route path='/mark' element={<Mark />} />
+                <Route path='/test' element={<ImageCarousel />}></Route>
             </Routes>
         </div>
     )

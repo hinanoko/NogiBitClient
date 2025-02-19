@@ -10,10 +10,16 @@
   width: 49%;
   height: 40vw;
   margin-left: 5%;
-  background-image: url('../../pictures/shiori1.jpg');
+  background-image: url('../../pictures/MainBigPhoto3.png');
   background-size: cover;
   background-position: center;
   transition: transform 0.3s ease;
+}
+
+.carousel-news{
+  width: 40vw;
+  height: auto;  /* 让高度自动适应内容 */
+  margin-left: 5%;
 }
 
 .big-news:hover {
@@ -36,23 +42,23 @@
 }
 
 .small-news-1 {
-  background-image: url('../../pictures/shiori2.jpg');
+  background-image: url('../../pictures/MainBigPhoto.png');
   margin-left: -9%;
   margin-right: 7%;
 }
 
 .small-news-2 {
-  background-image: url('../../pictures/shiori3.jpg');
+  background-image: url('../../pictures/MainBigPhoto2.jpg');
 }
 
 .small-news-3 {
-  background-image: url('../../pictures/shiori4.jpg');
+  background-image: url('../../pictures/MainSmallPhoto2.jpg');
   margin-left: -9%;
   margin-right: 7%;
 }
 
 .small-news-4 {
-  background-image: url('../../pictures/shiori5.jpg');
+  background-image: url('../../pictures/MainSmallPhoto3.jpg');
 }
 
 .small-news-1:hover, .small-news-2:hover, .small-news-3:hover, .small-news-4:hover {
@@ -221,4 +227,9 @@
   transform: scale(1.1);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
+
+
+
+
+
 
